@@ -79,8 +79,7 @@ services:
       - ./backend:/var/www/html
     tty: true
     depends_on:
-      - db
-      - webserver
+      - db # dbサービスが起動するのを待つ
 
   # Webサーバー（Nginx）
   webserver:
@@ -92,7 +91,7 @@ services:
       - ./backend:/var/www/html
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - backend
+      - backend # backendサービスが起動するのを待つ
 
   # データベース（MySQL）
   db:
